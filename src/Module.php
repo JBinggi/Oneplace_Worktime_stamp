@@ -103,6 +103,15 @@ class Module {
                         $container
                     );
                 },
+                # Api Plugin
+                Controller\ApiController::class => function($container) {
+                    $oDbAdapter = $container->get(AdapterInterface::class);
+                    return new Controller\ApiController(
+                        $oDbAdapter,
+                        $container->get(Model\StampTable::class),
+                        $container
+                    );
+                },
             ],
         ];
     } # getControllerConfig()
