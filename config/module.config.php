@@ -47,18 +47,18 @@ return [
                     ],
                 ],
             ],
-        ],
-        'worktime-stamp-api' => [
-            'type'    => Segment::class,
-            'options' => [
-                'route' => '/worktime/stamp/api[/:action[/:id]]',
-                'constraints' => [
-                    'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                    'id'     => '[0-9]+',
-                ],
-                'defaults' => [
-                    'controller' => Controller\ApiController::class,
-                    'action'     => 'index',
+            'worktime-stamp-api' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route' => '/worktime/stamp/api[/:action[/:id]]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ],
+                    'defaults' => [
+                        'controller' => Controller\ApiController::class,
+                        'action'     => 'index',
+                    ],
                 ],
             ],
         ],

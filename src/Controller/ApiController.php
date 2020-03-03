@@ -18,7 +18,7 @@ declare(strict_types=1);
 namespace JBinggi\Worktime\Stamp\Controller;
 
 use Application\Controller\CoreController;
-use OnePlace\Worktime\Model\WorktimeTable;
+use JBinggi\Worktime\Stamp\Model\StampTable;
 use Laminas\View\Model\ViewModel;
 use Laminas\Db\Adapter\AdapterInterface;
 use Zend\I18n\Translator\Translator;
@@ -35,13 +35,13 @@ class ApiController extends CoreController {
      * ApiController constructor.
      *
      * @param AdapterInterface $oDbAdapter
-     * @param WorktimeTable $oTableGateway
+     * @param StampTable $oTableGateway
      * @since 1.0.0
      */
-    public function __construct(AdapterInterface $oDbAdapter,WorktimeTable $oTableGateway,$oServiceManager) {
+    public function __construct(AdapterInterface $oDbAdapter,StampTable $oTableGateway,$oServiceManager) {
         parent::__construct($oDbAdapter,$oTableGateway,$oServiceManager);
         $this->oTableGateway = $oTableGateway;
-        $this->sSingleForm = 'worktime-single';
+        $this->sSingleForm = 'worktimestamp-single';
     }
 
     /**

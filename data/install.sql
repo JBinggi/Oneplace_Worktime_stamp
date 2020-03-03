@@ -39,3 +39,9 @@ INSERT INTO `core_form` (`form_key`, `label`, `entity_class`, `entity_tbl_class`
 --
 INSERT INTO `core_form_tab` (`Tab_ID`, `form`, `title`, `subtitle`, `icon`, `counter`, `sort_id`, `filter_check`, `filter_value`) VALUES
 ('stamp-base', 'worktimestamp-single', 'Stamp', 'Recent Stamp', 'fas fa-stamp', '', '1', '', '');
+
+--
+-- Permissions
+--
+INSERT INTO `permission` (`permission_key`, `module`, `label`, `nav_label`, `nav_href`, `show_in_menu`, `needs_globaladmin`) VALUES
+('list', 'JBinggi\\Worktime\\Stamp\\Controller\\ApiController', 'List', '', '', 1, 0);
