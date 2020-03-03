@@ -13,7 +13,7 @@
  * @since 1.0.0
  */
 
-namespace OnePlace\Worktime\Stamp;
+namespace JBinggi\Worktime\Stamp;
 
 use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;

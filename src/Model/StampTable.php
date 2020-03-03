@@ -13,7 +13,7 @@
  * @since 1.0.0
  */
 
-namespace OnePlace\Worktime\Stamp\Model;
+namespace JBinggi\Worktime\Stamp\Model;
 
 use Application\Controller\CoreController;
 use Application\Model\CoreEntityTable;

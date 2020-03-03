@@ -15,11 +15,11 @@
 
 declare(strict_types=1);
 
-namespace OnePlace\Worktime\Stamp\Controller;
+namespace JBinggi\Worktime\Stamp\Controller;
 
 use Application\Controller\CoreUpdateController;
 use Application\Model\CoreEntityModel;
-use OnePlace\Worktime\Stamp\Model\StampTable;
+use JBinggi\Worktime\Stamp\Model\StampTable;
 use Laminas\View\Model\ViewModel;
 use Laminas\Db\Adapter\AdapterInterface;
 use Laminas\Db\TableGateway\TableGateway;
@@ -67,25 +67,25 @@ class InstallController extends CoreUpdateController {
 
             return new ViewModel([
                 'bTableExists' => $bTableExists,
-                'sVendor' => 'oneplace',
+                'sVendor' => 'jbinggi',
                 'sModule' => 'oneplace-worktime-stamp',
             ]);
         } else {
             $sSetupConfig = $oRequest->getPost('plc_module_setup_config');
 
-            $sSetupFile = 'vendor/oneplace/oneplace-worktime-stamp/data/install.sql';
+            $sSetupFile = 'vendor/jbinggi/oneplace-worktime-stamp/data/install.sql';
             if(file_exists($sSetupFile)) {
                 echo 'got install file..';
                 $this->parseSQLInstallFile($sSetupFile,CoreUpdateController::$oDbAdapter);
             }
 
             if($sSetupConfig != '') {
-                $sConfigStruct = 'vendor/oneplace/oneplace-worktime-stamp/data/structure_'.$sSetupConfig.'.sql';
+                $sConfigStruct = 'vendor/jbinggi/oneplace-worktime-stamp/data/structure_'.$sSetupConfig.'.sql';
                 if(file_exists($sConfigStruct)) {
                     echo 'got struct file for config '.$sSetupConfig;
                     $this->parseSQLInstallFile($sConfigStruct,CoreUpdateController::$oDbAdapter);
                 }
-                $sConfigData = 'vendor/oneplace/oneplace-worktime-stamp/data/data_'.$sSetupConfig.'.sql';
+                $sConfigData = 'vendor/jbinggi/oneplace-worktime-stamp/data/data_'.$sSetupConfig.'.sql';
                 if(file_exists($sConfigData)) {
                     echo 'got data file for config '.$sSetupConfig;
                     $this->parseSQLInstallFile($sConfigData,CoreUpdateController::$oDbAdapter);
@@ -96,9 +96,9 @@ class InstallController extends CoreUpdateController {
             $oModTbl->insert([
                 'module_key' => 'oneplace-worktime-stamp',
                 'type' => 'plugin',
-                'version' => \OnePlace\Worktime\Stamp\Module::VERSION,
-                'label' => 'onePlace Worktime Stamp',
-                'vendor' => 'oneplace',
+                'version' => \JBinggi\Worktime\Stamp\Module::VERSION,
+                'label' => 'onePlace Worktime Stamp (jbinggi)',
+                'vendor' => 'jbinggi',
             ]);
 
             try {

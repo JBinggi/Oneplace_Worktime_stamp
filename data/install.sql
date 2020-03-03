@@ -32,7 +32,7 @@ ALTER TABLE `worktime_stamp`
 -- add stamp form
 --
 INSERT INTO `core_form` (`form_key`, `label`, `entity_class`, `entity_tbl_class`) VALUES
-('worktimestamp-single', 'Worktime Stamp', 'OnePlace\\Worktime\\Stamp\\Model\\Stamp', 'OnePlace\\Worktime\\Stamp\\Model\\StampTable');
+('worktimestamp-single', 'Worktime Stamp', 'JBinggi\\Worktime\\Stamp\\Model\\Stamp', 'JBinggi\\Worktime\\Stamp\\Model\\StampTable');
 
 --
 -- add form tab

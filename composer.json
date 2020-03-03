@@ -22,7 +22,7 @@
   },
   "autoload": {
     "psr-4": {
-      "OnePlace\\Worktime\\Stamp\\": "src/"
+      "JBinggi\\Worktime\\Stamp\\": "src/"
     }
   },
   "autoload-dev": {
@@ -46,7 +46,7 @@
   },
   "extra": {
     "zf": {
-      "module": "OnePlace\\Worktime\\Stamp"
+      "module": "JBinggi\\Worktime\\Stamp"
     }
   }
 }

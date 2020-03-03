@@ -15,11 +15,11 @@
 
 declare(strict_types=1);
 
-namespace OnePlace\Worktime\Stamp\Controller;
+namespace JBinggi\Worktime\Stamp\Controller;
 
 use Application\Controller\CoreEntityController;
 use Application\Model\CoreEntityModel;
-use OnePlace\Worktime\Stamp\Model\StampTable;
+use JBinggi\Worktime\Stamp\Model\StampTable;
 use Laminas\View\Model\ViewModel;
 use Laminas\Db\Adapter\AdapterInterface;
 
