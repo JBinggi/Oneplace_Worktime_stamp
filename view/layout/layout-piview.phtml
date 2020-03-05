@@ -61,31 +61,45 @@ if(isset(CoreController::$aGlobalSettings['app-title'])) {
 </head>
 <body>
 <div class="container">
-    <form id="formoid" action="localhost:5000" title="" method="post">
-        <div>
-            <input type="submit" id="submitButton"  name="submitButton" value="Submit" style="width:300px,height:150px">
-        </div>
-    </form>
+
+    <a class="btn btn-large btn-success" id="kommen" href="#" action="localhost:5000/api/stamp" type="1">Hoi</a>
+    <a class="btn btn-large btn-success" id="gehen" href="#" action="localhost:5000/api/stamp" type="2">Tschüss</a>
+
     <script type='text/javascript'>
-        /* attach a submit handler to the form */
-        $("#formoid").submit(function(event) {
+        $('#kommen').on('click', function (e) {
 
-            /* stop form from submitting normally */
-            event.preventDefault();
-            console.log('Console Log');
-            /* get the action attribute from the <form action=""> element */
+            console.log('Console Log 1');
             var $form = $( this ),
-                url = $form.attr( 'action' );
-
-            /* Send the data using post with element id name and name2*/
-            console.log(url)
-            var posting = $.post( url, { name: $('#name').val(), name2: $('#name2').val() } );
+                url = $form.attr( 'action' ),
+                type = $form.attr( 'type' );
+            console.log( $( this ));
+            console.log(url);
+            console.log(type);
+            var posting = $.post( url, { type: $('#type').val() } );
 
             /* Alerts the results */
             posting.done(function( data ) {
                 alert('success');
             });
-        });
+
+        })
+        $('#gehen').on('click', function (e) {
+
+            console.log('Console Log 1');
+            var $form = $( this ),
+                url = $form.attr( 'action' ),
+                type = $form.attr( 'type' );
+            console.log( $( this ));
+            console.log(url);
+            console.log(type);
+            var posting = $.post( url, { type: $('#type').val() } );
+
+            /* Alerts the results */
+            posting.done(function( data ) {
+                alert('success');
+            });
+
+        })
     </script>
 
 <!--    "width":"300px","font-size":"72px","position":"absolute","top":"275px","left":"65px","margin":"0px","overflow":"auto","height":"150px"-->
