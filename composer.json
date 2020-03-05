@@ -20,7 +20,8 @@
   },
   "require": {
     "oneplace/oneplace-contact": "^1.0.9",
-    "php": "^7.1"
+    "php": "^7.1",
+    "ext-json": "*"
   },
   "autoload": {
     "psr-4": {

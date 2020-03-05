@@ -45,37 +45,34 @@ class ApiController extends CoreController {
     }
 
     /**
-     * API Home - Main Index
+     * API Main Controller
+     *
+     * @return ViewModel
+     * @since 1.0.0
+     */
+    public function indexAction()
+    {
+
+        return new ViewModel();
+    }
+
+    /**
+     * API stamp worktime
      *
      * @return bool - no View File
      * @since 1.0.0
      */
-    public function indexAction() {
+    public function addAction() {
         $this->layout('layout/json');
-        $sLabel = '';
-        $sType = '';
-//	    var_dump($_REQUEST);
-
-//        $aReturn = ['state'=>'success','message'=>'sett wortime'];
-//        var_dump($_REQUEST);
-//        return false;
-
-
         $sValues= json_decode($_REQUEST['values'], true);
-
-        //return;
-
         $sLabel= $sValues["label"];
-//	    var_dump($sLabel);
         $sType= $sValues['type'];
-//	    var_dump($sType);
+
         if($sType !=''){
             $oTag = CoreEntityController::$aCoreTables['core-entity-tag']->select(['entity_form_idfs'=>'worktimestamp-single','tag_value'=>$sType]);
-            //var_dump($oTag);
             $iTagID = 0;
             if(count($oTag) > 0) {
                 $iTagID = $oTag->current()->Entitytag_ID;
-//		    var_dump($iTagID);
             } else {
                 $aReturn = ['state'=>'error','message'=>'Type not found'];
                 echo json_encode($aReturn);
@@ -84,26 +81,19 @@ class ApiController extends CoreController {
         }
 
         $iFinger= $sValues['finger'];
-//	    var_dump($iFinger);
+
         //TODO: Get Finger_idfs from worktime-stamp-finger
-
-
 
         $oStamp = $this->oTableGateway->generateNew();
         $oStamp->exchangeArray([
-//            'label' => $sLabel,
             'finger_idfs' => $iFinger,
             'type_idfs' => $iTagID
         ]);
-//        var_dump($oStamp);
 
         $this->oTableGateway->saveSingle($oStamp);
 
-        $aReturn = ['state'=>'success','message'=>'set wortime'];
-//        echo json_encode($aReturn);
+        $aReturn = ['state'=>'success','message'=>'Worktime Stamp'];
         $aJDReturn=json_encode($aReturn);
-//        var_dump($aReturn);
-//        var_dump($aJDReturn);
         echo $aJDReturn;
         return false;
     }
