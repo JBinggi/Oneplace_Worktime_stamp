@@ -68,8 +68,7 @@ return [
     'view_manager' => [
         'template_path_stack' => [
             'worktime-stamp' => __DIR__ . '/../view',
-            'layout/index'   => __DIR__ . '/../view/layout/layout-7pi-view.phtml',
-
+//            'layout/piview'   => __DIR__ . '/../view/layout/layout-piview.phtml',
         ],
     ],
 ];

@@ -52,7 +52,11 @@ class ApiController extends CoreController {
      */
     public function indexAction()
     {
+        $this->layout('layout/layout-piview');
 
+//        $aReturn = ['state'=>'error','message'=>'Type not found'];
+//        echo json_encode($aReturn);
+//        return false;
         return new ViewModel();
     }
 
@@ -64,6 +68,12 @@ class ApiController extends CoreController {
      */
     public function addAction() {
         $this->layout('layout/json');
+        if(!key_exists('values',$_REQUEST))  {
+            $aReturn = ['state'=>'error','message'=>'key value not found'];
+            echo json_encode($aReturn);
+            return false;
+
+        }
         $sValues= json_decode($_REQUEST['values'], true);
         $sLabel= $sValues["label"];
         $sType= $sValues['type'];
