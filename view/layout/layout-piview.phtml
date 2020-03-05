@@ -62,24 +62,28 @@ if(isset(CoreController::$aGlobalSettings['app-title'])) {
 <body>
 <div class="container">
 
-    <a class="btn btn-large btn-success" id="kommen" href="#" action="localhost:5000/api/stamp" type="1">Hoi</a>
-    <a class="btn btn-large btn-success" id="gehen" href="#" action="localhost:5000/api/stamp" type="2">Tschüss</a>
+    <a class="btn btn-large btn-success" id="kommen" href="#" action="http://localhost:5000/api/stamp" type="1">Hoi</a>
+    <a class="btn btn-large btn-success" id="gehen" href="#" action="http://localhost:5000/api/stamp" type="2">Tschüss</a>
 
     <script type='text/javascript'>
         $('#kommen').on('click', function (e) {
 
-            console.log('Console Log 1');
             var $form = $( this ),
                 url = $form.attr( 'action' ),
                 type = $form.attr( 'type' );
-            console.log( $( this ));
             console.log(url);
-            console.log(type);
-            var posting = $.post( url, { type: $('#type').val() } );
+            // var posting = $.post( url, { type: $('#type').val() } );
+            var posting = $.post( url, {
+                data: JSON.stringify( { "type": 1 }),
+                contentType: 'application/json',
+                type: 'POST'
+            })
+            console.log(posting);
 
             /* Alerts the results */
             posting.done(function( data ) {
-                alert('success');
+                console.log("success "+data);
+                console.log(data);
             });
 
         })
