@@ -1,0 +1,70 @@
+<?php
+
+use Application\Controller\CoreController;
+use Application\Module;
+
+# Set App Title from Database if found
+$sPlcTitle = 'onePlace';
+if(isset(CoreController::$aGlobalSettings['app-title'])) {
+    $sPlcTitle = str_replace(['##VERSION##'], [Module::VERSION], CoreController::$aGlobalSettings['app-title']);
+}
+?>
+<?= $this->doctype() ?>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <?= $this->headTitle($sPlcTitle)->setSeparator(' - ')->setAutoEscape(false) ?>
+
+    <?= $this->headMeta()
+        ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+    ?>
+
+    <!-- Le styles -->
+    <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'])
+        ->prependStylesheet($this->basePath('/css/style.css'))
+        ->prependStylesheet($this->basePath('/vendor/shepherd.js/dist/css/shepherd.css'))
+        ->prependStylesheet($this->basePath('/vendor/bootstrap/dist/css/bootstrap.min.css'))
+        ->prependStylesheet($this->basePath('/vendor/@fortawesome/fontawesome-free/css/all.min.css'))
+        ->prependStylesheet($this->basePath('/vendor/summernote/dist/summernote-bs4.min.css'))
+        ->prependStylesheet($this->basePath('/vendor/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css'))
+        ->prependStylesheet($this->basePath('/vendor/filepond/dist/filepond.min.css'))
+        ->prependStylesheet($this->basePath('/vendor/uppy/dist/uppy.min.css'))
+        ->prependStylesheet($this->basePath('/vendor/apexcharts/dist/apexcharts.min.css'))
+        ->prependStylesheet($this->basePath('/vendor/select2/dist/css/select2.min.css'))
+    ?>
+
+    <!-- Scripts -->
+    <?= $this->inlineScript()
+        ->prependFile($this->basePath('/js/plc-message.js'))
+        ->prependFile($this->basePath('/js/listener.js'))
+        ->prependFile($this->basePath('/vendor/shepherd.js/dist/js/shepherd.min.js'))
+        ->prependFile($this->basePath('/vendor/@fortawesome/fontawesome-free/js/all.min.js'))
+        ->prependFile($this->basePath('/vendor/sweetalert/dist/sweetalert.min.js'))
+        ->prependFile($this->basePath('/vendor/summernote/dist/summernote-bs4.min.js'))
+        ->prependFile($this->basePath('/vendor/apexcharts/dist/apexcharts.min.js'))
+        ->prependFile($this->basePath('/vendor/bootstrap/dist/js/bootstrap.bundle.min.js'))
+        ->prependFile($this->basePath('/vendor/jquery-ui-sortable/jquery-ui.min.js'))
+        ->prependFile($this->basePath('/vendor/select2/dist/js/select2.full.min.js'))
+        ->prependFile($this->basePath('/vendor/jquery/dist/jquery.min.js'))
+    ?>
+    <!-- Load FilePond library -->
+    <script src="/vendor/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.min.js"></script>
+    <script src="/vendor/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.min.js"></script>
+    <script src="/vendor/filepond-plugin-image-validate-size/dist/filepond-plugin-image-validate-size.min.js"></script>
+    <script src="/vendor/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.min.js"></script>
+    <script src="/vendor/filepond-plugin-image-crop/dist/filepond-plugin-image-crop.min.js"></script>
+    <script src="/vendor/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js"></script>
+    <script src="/vendor/filepond-plugin-image-transform/dist/filepond-plugin-image-transform.min.js"></script>
+    <script src="/vendor/filepond/dist/filepond.min.js"></script>
+    <!-- Turn all file input elements into ponds -->
+</head>
+<body>
+<div class="container">
+    <footer>
+        <p>&copy; 2010-<?= date('Y') ?> by Verein onePlace. All rights reserved.</p>
+    </footer>
+</div>
+<?= $this->inlineScript() ?>
+</body>
+</html>
