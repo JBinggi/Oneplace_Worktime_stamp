@@ -68,7 +68,17 @@ return [
     'view_manager' => [
         'template_path_stack' => [
             'worktime-stamp' => __DIR__ . '/../view',
-//            'layout/piview'   => __DIR__ . '/../view/layout/layout-piview.phtml',
+        ],
+    ],
+    # Translator
+    'translator' => [
+        'locale' => 'de_DE',
+        'translation_file_patterns' => [
+            [
+                'type'     => 'gettext',
+                'base_dir' => __DIR__ . '/../language',
+                'pattern'  => '%s.mo',
+            ],
         ],
     ],
 ];

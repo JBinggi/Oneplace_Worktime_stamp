@@ -16,6 +16,8 @@ INSERT INTO `core_form_field` (`Field_ID`, `type`, `label`, `fieldkey`, `tab`, `
 CREATE TABLE `worktime_stamp` (
   `Stamp_ID` int(11) NOT NULL,
   `label` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `finger_idfs` int(11) NOT NULL,
+  `type_idfs` int(11) NOT NULL,
   `created_by` int(11) NOT NULL,
   `created_date` datetime NOT NULL,
   `modified_by` int(11) NOT NULL,
@@ -44,4 +46,7 @@ INSERT INTO `core_form_tab` (`Tab_ID`, `form`, `title`, `subtitle`, `icon`, `cou
 -- Permissions
 --
 INSERT INTO `permission` (`permission_key`, `module`, `label`, `nav_label`, `nav_href`, `show_in_menu`, `needs_globaladmin`) VALUES
-('list', 'JBinggi\\Worktime\\Stamp\\Controller\\ApiController', 'List', '', '', 1, 0);
+('list', 'JBinggi\\Worktime\\Stamp\\Controller\\ApiController', 'List', '', '', 1, 0),
+('index', 'JBinggi\\Worktime\\Stamp\\Controller\\ApiController', 'index', '', '', 1, 0),
+('add', 'JBinggi\\Worktime\\Stamp\\Controller\\ApiController', 'Add Stamp', '', '', 1, 0);
+
