@@ -16,10 +16,14 @@
     "phpunit/phpunit": "^8",
     "laminas/laminas-test": "^3.3.0",
     "oneplace/oneplace-worktime": "^1.0.0",
+    "oneplace/oneplace-tag": "^1.0.8",
+    "oneplace/oneplace-core": "^1.0.19",
     "php-coveralls/php-coveralls": "^2.2"
   },
   "require": {
+    "oneplace/oneplace-core": "^1.0.19",
     "oneplace/oneplace-worktime": "^1.0.0",
+    "oneplace/oneplace-tag": "^1.0.8",
     "php": "^7.1",
     "ext-json": "*"
   },

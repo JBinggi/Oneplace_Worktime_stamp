@@ -52,51 +52,18 @@ class StampTable extends CoreEntityTable {
     }
 
     /**
-     * Save Stamp Entity
+     * Save Worktime Entity
      *
      * @param Stamp $oStamp
-     * @return int Stamp ID
+     * @return int Request ID
      * @since 1.0.0
      */
     public function saveSingle(Stamp $oStamp) {
-        $aData = [];
+        $aDefaultData = [
+            'label' => $oStamp->label,
+        ];
 
-        $aData = $this->attachDynamicFields($aData,$oStamp);
-
-        $id = (int) $oStamp->id;
-
-        if ($id === 0) {
-            # Add Metadata
-            $aData['created_by'] = CoreController::$oSession->oUser->getID();
-            $aData['created_date'] = date('Y-m-d H:i:s',time());
-            $aData['modified_by'] = CoreController::$oSession->oUser->getID();
-            $aData['modified_date'] = date('Y-m-d H:i:s',time());
-
-            # Insert Stamp
-            $this->oTableGateway->insert($aData);
-
-            # Return ID
-            return $this->oTableGateway->lastInsertValue;
-        }
-
-        # Check if Stamp Entity already exists
-        try {
-            $this->getSingle($id);
-        } catch (\RuntimeException $e) {
-            throw new \RuntimeException(sprintf(
-                'Cannot update Stamp with identifier %d; does not exist',
-                $id
-            ));
-        }
-
-        # Update Metadata
-        $aData['modified_by'] = CoreController::$oSession->oUser->getID();
-        $aData['modified_date'] = date('Y-m-d H:i:s',time());
-
-        # Update Stamp
-        $this->oTableGateway->update($aData, ['Stamp_ID' => $id]);
-
-        return $id;
+        return $this->saveSingleEntity($oStamp,'Stamp_ID',$aDefaultData);
     }
 
     /**

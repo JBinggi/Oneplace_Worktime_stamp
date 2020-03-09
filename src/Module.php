@@ -2,7 +2,7 @@
 /**
  * Module.php - Module Class
  *
- * Module Class File for Worktime-Stamp Plugin
+ * Module Class File for Stamp Stamp Plugin
  *
  * @category Config
  * @package Worktime\Stamp
@@ -24,6 +24,7 @@ use Laminas\EventManager\EventInterface as Event;
 use Laminas\ModuleManager\ModuleManager;
 use JBinggi\Worktime\Stamp\Controller\StampController;
 use JBinggi\Worktime\Stamp\Model\StampTable;
+use OnePlace\Worktime\Model\WorktimeTable;
 
 class Module {
     /**
@@ -81,7 +82,6 @@ class Module {
     public function getControllerConfig() : array {
         return [
             'factories' => [
-                # Plugin Example Controller
                 Controller\StampController::class => function($container) {
                     $oDbAdapter = $container->get(AdapterInterface::class);
                     $tableGateway = $container->get(StampTable::class);
@@ -103,7 +103,7 @@ class Module {
                         $container
                     );
                 },
-                # Api Plugin
+                # ApiController
                 Controller\ApiController::class => function($container) {
                     $oDbAdapter = $container->get(AdapterInterface::class);
                     return new Controller\ApiController(

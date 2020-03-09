@@ -17,13 +17,13 @@ declare(strict_types=1);
 
 namespace JBinggi\Worktime\Stamp\Controller;
 
-use Application\Controller\CoreController;
+use Application\Controller\CoreEntityController;
 use JBinggi\Worktime\Stamp\Model\StampTable;
 use Laminas\View\Model\ViewModel;
 use Laminas\Db\Adapter\AdapterInterface;
 use Zend\I18n\Translator\Translator;
 
-class ApiController extends CoreController {
+class ApiController extends CoreEntityController {
     /**
      * Worktime Table Object
      *
@@ -68,19 +68,19 @@ class ApiController extends CoreController {
      */
     public function addAction() {
         $this->layout('layout/json');
+
         if(!key_exists('values',$_REQUEST))  {
             $aReturn = ['state'=>'error','message'=>'key value not found'];
             echo json_encode($aReturn);
             return false;
-
         }
         $sValues= json_decode($_REQUEST['values'], true);
-        $sLabel= $sValues["label"];
-        $sType= $sValues['type'];
+        $sLabel = $sValues["label"];
+        $sType = $sValues['type'];
 
+        $iTagID = 0;
         if($sType !=''){
             $oTag = CoreEntityController::$aCoreTables['core-entity-tag']->select(['entity_form_idfs'=>'worktimestamp-single','tag_value'=>$sType]);
-            $iTagID = 0;
             if(count($oTag) > 0) {
                 $iTagID = $oTag->current()->Entitytag_ID;
             } else {
@@ -90,18 +90,18 @@ class ApiController extends CoreController {
             }
         }
 
+
         $iFinger= $sValues['finger'];
 
         //TODO: Get Finger_idfs from worktime-stamp-finger
 
         $oStamp = $this->oTableGateway->generateNew();
         $oStamp->exchangeArray([
+            'label' => $sLabel,
             'finger_idfs' => $iFinger,
-            'type_idfs' => $iTagID
+            'type_idfs' => $iTagID,
         ]);
-
         $this->oTableGateway->saveSingle($oStamp);
-
         $aReturn = ['state'=>'success','message'=>'Worktime Stamp'];
         $aJDReturn=json_encode($aReturn);
         echo $aJDReturn;

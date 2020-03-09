@@ -42,11 +42,9 @@ class Stamp extends CoreEntityModel {
      */
     public function exchangeArray(array $aData) {
         $this->id = !empty($aData['Stamp_ID']) ? $aData['Stamp_ID'] : 0;
+        $this->label = !empty($aData['label']) ? $aData['label'] : '';
 
         $this->updateDynamicFields($aData);
     }
 
-    public function getLabel() {
-        return $this->street;
-    }
 }
